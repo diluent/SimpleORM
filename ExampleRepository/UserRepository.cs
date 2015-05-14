@@ -18,7 +18,7 @@ namespace MVC.Repository.User {
     }
 
     /// <summary>
-    /// Репозиторий для идентификации
+    /// Репозиторий пользователя
     /// </summary>
     public interface IUserRepository {
         UserModel Get(string login);
@@ -60,11 +60,11 @@ namespace MVC.Repository.User {
         bool Insert(UserModel data) {
             const string query = "Package.pUserInsert";
             var cmd = _dataContext.CreateStoredProcedureCommand(query)
-                                 .AddParamIn("p_merchant_id", data.Login)
-                                 .AddParamIn("p_merchant_id", data.Name)
-                                 .AddParamIn("p_merchant_id", data.SureName)
-                                 .AddParamIn("p_merchant_id", data.PatronomicName)
-                                 .AddParamIn("p_merchant_id", data.Phone);
+                                 .AddParamIn("p_login", data.Login)
+                                 .AddParamIn("p_name", data.Name)
+                                 .AddParamIn("p_surename", data.SureName)
+                                 .AddParamIn("p_patronomicname", data.PatronomicName)
+                                 .AddParamIn("p_phone", data.Phone);
             return cmd.SimpleExecute();
         }
     }
